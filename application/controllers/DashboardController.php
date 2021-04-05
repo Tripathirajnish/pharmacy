@@ -16,6 +16,8 @@ class dashboardController extends SessionController {
 		$category = $this->dashboardModel->fetchCategory($id);
 		$doctor = $this->dashboardModel->fetchDoctor($id);
 		$this->load->view('pharmacy/dashboard.php',['patient'=>$product,'supplier'=>$supplier,'category'=>$category,'doctor'=>$doctor]);
+
+		//dashboard
     }
     
 }
