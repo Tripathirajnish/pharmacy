@@ -1,0 +1,141 @@
+
+.custom-verified-section{
+    background: white;
+}
+.custom-admin-panel{
+    font-weight: 800;
+}
+
+.content-header
+{
+    background-color: #000000;
+    padding: 25px;
+}
+.nav-link i
+{
+    font-size: 24px;
+    
+}
+.navbar-nav>li {
+    float: left;
+    color: #000;
+    font-weight: 600;
+    font-family: serif;
+}
+#searchInput
+{
+    box-shadow: 0px 0px 3px 0px #888888;
+    padding: 10px;
+}
+.brand-link
+{
+    border-top: 1px solid #4b545c;
+}
+.info-box
+{
+    margin-top: 30px;
+    background: #0e2594;
+}
+.info-box-icon 
+{
+    background-color: unset !important ;
+}
+.info-box a {
+    color: #ffffff;
+    text-decoration: none !important;
+}
+.info-box i
+{
+    color: #ffffff;
+    font-size: 50px;
+}
+.form_main {
+    width: 100%;
+}
+.form_main h4 {
+    font-family: roboto;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+.heading {
+    border-bottom: 1px solid #fcab0e;
+    padding-bottom: 9px;
+    position: relative;
+}
+.heading span {
+    background: #9e6600 none repeat scroll 0 0;
+    bottom: -2px;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    width: 75px;
+}   
+.form {
+    border-radius: 7px;
+    padding: 6px;
+}
+.txt[type="text"] {
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    padding: 10px 0 10px 5px;
+    width: 100%;
+}
+.txt_3[type="text"] {
+    margin: 10px 0 0;
+    padding: 10px 0 10px 5px;
+    width: 100%;
+}
+.txt2[type="submit"] {
+    background: #242424 none repeat scroll 0 0;
+    border: 1px solid #4f5c04;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 35px;
+    margin: 10px 0;
+    padding: 0;
+    text-transform: uppercase;
+    width: 30%;
+}
+.txt2:hover {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    color: #5793ef;
+    transition: all 0.5s ease 0s;
+}
+.card-login
+{
+    width: 50%;
+}
+.content-wrapper>.content
+{
+        padding: 0 1.5rem;
+}
+div.dataTables_filter input {
+    margin-left: 0px !important;
+    display: block !important;
+}
+#patient-info
+{
+	padding: 10px;
+    background-color: #fff;
+    height: auto;
+    width: 100%;
+    border: 1px solid #8e8c8c;
+    text-align: center;
+    margin: 10px 0px;
+}
+#patient-info a {
+    padding: 4px;
+}
+.main-sidebar
+{
+    background-color: #000000;
+}
+.breadcrumb-item a,.text-dark,.breadcrumb-item+.breadcrumb-item::before,.breadcrumb>.active
+{
+    color:#fff !important;
+}

@@ -1,0 +1,300 @@
+<?php  include_once('includes/header.php');  ?>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<script language="JavaScript" src="https://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script language="JavaScript" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script language="JavaScript" src="https://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+  <?php  include_once('includes/header-top.php');  ?>
+  <?php  include_once('includes/side-menu.php');  ?>
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <center><h1 class="m-0 text-dark">Add Medicine Details</h1></center>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Add Medicine Details</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+<?php if($success = $this->session->flashdata('success')){ ?>
+      <div class="col-sm-12">
+      <div class="alert alert-success alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+          <strong><?= $success ?></strong>
+      </div>
+    </div>
+      <?php   } ?>
+       <?php if($error = $this->session->flashdata('error')){ ?>
+      <div class="col-sm-12">
+      <div class="alert alert-danger alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+          <strong><?= $error?></strong>
+      </div>
+    </div>
+      <?php   } ?>
+    <!-- Main content -->
+<section class="content">
+     <!--    <?php //echo form_open('doctorController/addDoctor');?> -->
+<form action="<?= base_url('pharmacyController/addmedicine'); ?>" enctype="multipart/form-data" method="post">
+        <div class="row">
+		<div class="col-md-4">
+          <label>Medicine Name</label>
+          <input type="text" value="<?php echo set_value('name'); ?>" id="searchInput" name="name" class="form-control" placeholder="Search Medicine by Medicine Name " >
+          <input type="hidden" value="" id="cstmid" name="hid" class="form-control">
+		  <div id="searchResult" class="table"></div>
+		  <?php if (isset($this->session->flashdata('error1')['name'])) 
+                    echo $this->session->flashdata('error1')['name'];?>
+        </div>
+        <div class="col-md-4">
+          <label>HSN Code</label>
+          <input type="text" value="<?php echo set_value('code'); ?>" name="code" class="form-control" >
+		  <?php if (isset($this->session->flashdata('error1')['code'])) 
+                    echo $this->session->flashdata('error1')['code'];?>
+        </div>
+        <div class="col-md-4">
+          <label>Purchase Price</label>
+          <input type="number" value="<?php echo set_value('p_price'); ?>" name="p_price" class="form-control" >
+		  <?php if (isset($this->session->flashdata('error1')['p_price'])) 
+                    echo $this->session->flashdata('error1')['p_price'];?>
+        </div>
+        <div class="col-md-4">
+          <label>Sale Price</label>
+          <input type="number" value="<?php echo set_value('sale_price'); ?>" name="sale_price" class="form-control" >
+		  <?php if (isset($this->session->flashdata('error1')['sale_price'])) 
+                    echo $this->session->flashdata('error1')['sale_price'];?>
+        </div>
+        <div class="col-md-4">
+          <label>Category</label>
+          <select type="text" value="" name="category" class="form-control">
+		  <option value="">--Select Category--</option>
+		  <?php foreach($cat as $catlist){ ?>
+		  <option value="<?= $catlist->id; ?>"><?= $catlist->category_name; ?></option>
+		  <?php } ?>
+		  </select>
+		  <?php if (isset($this->session->flashdata('error1')['category'])) 
+                    echo $this->session->flashdata('error1')['category'];?>
+        </div>
+        <div class="col-md-4">
+          <label>Unit</label>
+          <select name="unit" class="form-control">
+          <option vlaue="box">Box </option>
+          <option value="set">Set </option>
+          <option value="inj">INJ </option>
+          <option value="capsule">Capsule</option>
+          <option value="tablet">Tablet </option>
+          <option value="drops">Drops</option>
+          <option value="syrup">Syrup</option>
+          <option value="bottles">Bottles</option>
+          <option vlaue="satche">Satche</option>
+          <option value="vials">Vials</option>
+          <option value="Infusions">Infusions</option>
+          <option value="cream">Cream</option>
+          <option value="ointment">Ointment</option>
+          <option vlaue="gel">Gel</option>
+          <option vlaue="bags">Bags</option>
+          <option value="nos">Nos.</option>
+          <option value="packets">Packets</option>
+          <option value="strips">Strips</option>
+        </select>
+		<?php if (isset($this->session->flashdata('error1')['unit'])) 
+                    echo $this->session->flashdata('error1')['unit'];?>
+		</div>
+		<div class="col-md-4">
+          <label>Quantity Of Medicine </label>
+          <input type="number" name="quantity"  class="form-control">
+		  <?php if (isset($this->session->flashdata('error1')['quantity'])) 
+                    echo $this->session->flashdata('error1')['quantity'];?>
+        </div>
+		<div class="col-md-4">
+          <label>Purchase Date</label>
+          <input type="date" value="<?php echo set_value('purchase_date'); ?>" name="purchase_date" class="form-control" >
+		  <?php if (isset($this->session->flashdata('error1')['purchase_date'])) 
+                    echo $this->session->flashdata('error1')['purchase_date'];?>
+        </div>
+        
+        <div class="col-md-4">
+          <label>Expiry Date</label>
+          <input type="date" value="<?php echo set_value('expiry_date'); ?>" name="expiry_date" class="form-control" >
+		  <?php if (isset($this->session->flashdata('error1')['expiry_date'])) 
+                    echo $this->session->flashdata('error1')['expiry_date'];?>
+        </div>
+        <div class="col-md-4">
+          <label>Supplier Name</label>
+          <input type="text" value="<?php echo set_value('supplier_name'); ?>" name="supplier_name" class="form-control">
+		  <?php if (isset($this->session->flashdata('error1')['supplier_name'])) 
+                    echo $this->session->flashdata('error1')['supplier_name'];?>
+        </div>
+		<div class="col-md-4">
+          <label>Manufacturer Name</label>
+          <input type="text" value="<?php echo set_value('manufactured_name'); ?>" name="manufactured_name" class="form-control">
+		  <?php if (isset($this->session->flashdata('error1')['manufactured_name'])) 
+                    echo $this->session->flashdata('error1')['manufactured_name'];?>
+        </div>
+		<div class="col-md-4">
+          <label>Batch No</label>
+          <input type="text" value="<?php echo set_value('batch_no'); ?>" name="batch_no" class="form-control">
+		  <?php if (isset($this->session->flashdata('error1')['batch_no'])) 
+                    echo $this->session->flashdata('error1')['batch_no'];?>
+        </div>
+		<div class="col-md-4">
+          <label>Tax</label>
+          <select type="text" name="tax" class="form-control">
+		  <?php foreach($data as $dt){ ?>
+		  <option><?= $dt->amount; ?></option>
+		  <?php } ?>
+		  </select>
+		  <?php if (isset($this->session->flashdata('error1')['batch_no'])) 
+                    echo $this->session->flashdata('error1')['batch_no'];?>
+        </div>
+        <div class="col-md-12">
+         <br>
+          <input type="submit" value="Submit" name="submit" class="btn btn-primary">
+          <input type="reset" value="Reset" class="btn btn-danger">
+        </div>
+       
+      </div>
+    </form>
+   
+     
+     
+       </section>
+     </div>
+   </div>
+</body>
+ <style>
+  .custom-verified-section{
+    background: white;
+  }
+  .custom-admin-panel{
+    font-weight: 800;
+  }
+  .pagination>li {
+display: inline;
+padding:0px !important;
+margin:0px !important;
+border:none !important;
+}
+.modal-backdrop {
+  z-index: -1 !important;
+}
+/*
+Fix to show in full screen demo
+*/
+iframe
+{
+    height:700px !important;
+}
+
+.btn {
+display: inline-block;
+padding: 6px 12px !important;
+margin-bottom: 0;
+font-size: 14px;
+font-weight: 400;
+line-height: 1.42857143;
+text-align: center;
+white-space: nowrap;
+vertical-align: middle;
+-ms-touch-action: manipulation;
+touch-action: manipulation;
+cursor: pointer;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+background-image: none;
+border: 1px solid transparent;
+border-radius: 4px;
+}
+
+.btn-primary {
+color: #fff !important;
+background: #428bca !important;
+border-color: #357ebd !important;
+box-shadow:none !important;
+}
+.btn-danger {
+color: #fff !important;
+background: #d9534f !important;
+border-color: #d9534f !important;
+box-shadow:none !important;
+}
+#searchResult{
+    z-index: 1;
+    position: absolute;
+    background: #fff;
+    width: 92%;
+}
+#searchResult .ststsmli.add{ padding:10px; border-bottom: 1px solid; }
+ </style>
+  <script type="text/javascript">
+  $(document).ready(function(){
+	  $('#datatable').dataTable();
+    $("[data-toggle=tooltip]").tooltip()
+	 $("#searchInput").keyup(function(){
+		var med = $(this).val();
+		if(med != ''){
+		 $.ajax({
+		url:"<?=base_url('pharmacyController/Searchmedicine')?>",
+		type:'POST',
+		data: {med: med},
+		success: function(response){
+		if(response == '<ul class="list-unstyled"></ul>'){
+			$("#searchResult").fadeIn();
+			//$("#searchResult").html("<p class='text-danger'>Medicine not fount</p>");
+		}else{
+			
+           $("#searchResult").fadeIn();
+           $("#searchResult").html(response);
+		    
+		}
+		}
+		});
+		}else{
+			$("#searchResult").fadeOut();
+           $("#searchResult").html(" ");
+		}
+		var data = $(".ststsmli").text();
+		 if(data != med){
+			   $("#searchResult").find(".list-unstyled").remove();
+		   }
+		});
+		$(document).on('click', '.ststsmli', function(){
+			
+         var ival = $(this).children('.hiddenid').val(); 
+            $('#cstmid').val(ival);		 
+		var val = $(this).text();
+		if(val == '+'){
+			 val = '';
+		}else{
+			 val = $(this).text();
+		}
+			$('#searchInput').val(val);
+		$("#searchResult").fadeOut();
+	});
+  });
+</script> 
+    <!-- /.content -->
+  </div>
+<!-- ./wrapper -->
+<?php  include_once('includes/footer.php');  ?>
+<?php  include_once('includes/footer-bottom.php');  ?>
